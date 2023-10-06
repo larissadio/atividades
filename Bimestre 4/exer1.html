@@ -1,0 +1,84 @@
+!DOCTYPE html>
+<html>
+<head>
+    <title>Exibir uma palavra na tabela</title>
+    <style>
+        .table {
+            border-collapse: collapse;
+            width: 30%;
+        }
+
+        .table, .td {
+            border: 1px solid rgb(72, 193, 197);
+            text-align: start;
+        }
+
+        td {
+            padding: 1px;
+        }
+
+        .hr-row {
+            border-top:  1px solid rgb(72, 193, 197);
+        }
+        td {
+            padding: 1px;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <input type="text" id="inputString" placeholder="Digite a string">
+        <input type="button" value="Exibir em uma unica linha" onclick="displayInSingleRow()">
+        <input type="button" value="Exibir em uma coluna por linha" onclick="displayInColumnPerRow()">
+    </form>
+    <h2>Resultado:</h2>
+    <table class="table">
+        <tr id="singleRow"></tr>
+    </table>
+    <table class="table">
+        <tbody id="columnTable"></tbody>
+    </table>
+    <script>
+        function displayInSingleRow() {
+            var input = document.getElementById("inputString").value;
+            var singleRow = document.getElementById("singleRow");
+            singleRow.innerHTML = ''; 
+
+            for (var i = 0; i < input.length; i++) {
+                var cell = document.createElement("td");
+                cell.innerText = input[i];
+                singleRow.appendChild(cell);
+
+                if (i < input.length - 1) {
+                    var hrCell = document.createElement("td");
+                    hrCell.classList.add("hr-row");
+                    singleRow.appendChild(hrCell);
+                }
+            }
+        }
+
+        function displayInColumnPerRow() {
+            var input = document.getElementById("inputString").value;
+            var columnTable = document.getElementById("columnTable");
+            columnTable.innerHTML = ''; 
+
+            for (var i = 0; i < input.length; i++) {
+                var row = document.createElement("tr");
+                var cell = document.createElement("td");
+                cell.innerText = input[i];
+                row.appendChild(cell);
+                columnTable.appendChild(row);
+
+                if (i < input.length - 1) {
+                    var hrRow = document.createElement("tr");
+                    var hrCell = document.createElement("td");
+                    hrCell.colSpan = 1;
+                    hrCell.classList.add("hr-row");
+                    hrRow.appendChild(hrCell);
+                    columnTable.appendChild(hrRow);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

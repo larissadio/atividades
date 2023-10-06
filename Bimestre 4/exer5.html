@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>catalogo telefonico</title>
+</head>
+<body>
+    <h1>catalogo telefonico</h1>
+    <form id="name-form">
+        <label for="input-name">informe um nome completo:</label>
+        <input type="text" id="input-name" name="input-name">
+        <button type="button" onclick="formatName()">Formatar</button>
+    </form>
+    <p id="formatted-name"></p>
+
+    <script>
+        function formatName() {
+            var inputElement = document.getElementById("input-name");
+            var formattedName = document.getElementById("formatted-name");
+
+            var name = inputElement.value.trim(); 
+
+            
+            var nameParts = name.split(" ");
+
+            
+            if (nameParts.length > 1) {
+                
+                var lastName = nameParts[nameParts.length - 1];
+                var firstNameMiddleName = nameParts.slice(0, nameParts.length - 1).join(" ");
+                var formatted = lastName + ", " + firstNameMiddleName;
+
+                formattedName.textContent = "Saída: " + formatted;
+            } else {
+                
+                formattedName.textContent = "Saída: " + name;
+            }
+        }
+    </script>
+</body>
+</html>

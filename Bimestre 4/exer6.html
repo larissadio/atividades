@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>referencia bibliografica</title>
+</head>
+<body>
+    <h1>referencia bibliografica</h1>
+    <form id="name-form">
+        <label for="input-name">informe um nome completo:</label>
+        <input type="text" id="input-name" name="input-name">
+        <button type="button" onclick="formatName()">Formatar</button>
+    </form>
+    <p id="formatted-name"></p>
+
+    <script>
+        function formatName() {
+            var inputElement = document.getElementById("input-name");
+            var formattedName = document.getElementById("formatted-name");
+
+            var name = inputElement.value.trim(); 
+
+            
+            var nameParts = name.split(" ");
+
+            
+            if (nameParts.length > 1) {
+               
+                var lastName = nameParts[nameParts.length - 1].toUpperCase();
+                var firstInitial = nameParts[0].charAt(0).toUpperCase();
+                var middleInitial = nameParts[1] ? nameParts[1].charAt(0).toUpperCase() : "";
+
+                var formatted = lastName + ", " + firstInitial + ". " + middleInitial + ".";
+
+                formattedName.textContent = "Saída: " + formatted;
+            } else {
+                
+                formattedName.textContent = "Saída: " + name;
+            }
+        }
+    </script>
+</body>
+</html>

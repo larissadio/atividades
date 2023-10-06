@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analisar String</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid rgb(199, 32, 171);
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>analisar String</h2>
+
+    <form id="inputForm">
+        <label for="inputString">digite uma palavra:</label>
+        <input type="text" id="inputString" required>
+        <br>
+        <button type="button" onclick="analyzeString()">Analisar String</button>
+    </form>
+
+    <table>
+        <tr>
+            <th>Tipo de Caractere</th>
+            <th>Quantidade</th>
+        </tr>
+        <tr>
+            <td>Vogais</td>
+            <td id="vowelsCount"></td>
+        </tr>
+        <tr>
+            <td>Consoantes</td>
+            <td id="consonantsCount"></td>
+        </tr>
+        <tr>
+            <td>Dígitos</td>
+            <td id="digitsCount"></td>
+        </tr>
+        <tr>
+            <td>Outros</td>
+            <td id="othersCount"></td>
+        </tr>
+    </table>
+
+    <script>
+        function analyzeString() {
+            const inputString = document.getElementById('inputString').value;
+            const vowels = inputString.match(/[aeiouAEIOU]/g);
+            const consonants = inputString.match(/[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]/g);
+            const digits = inputString.match(/[0-9]/g);
+            const others = inputString.match(/[^a-zA-Z0-9]/g);
+
+            document.getElementById('vowelsCount').textContent = vowels ? vowels.length : 0;
+            document.getElementById('consonantsCount').textContent = consonants ? consonants.length : 0;
+            document.getElementById('digitsCount').textContent = digits ? digits.length : 0;
+            document.getElementById('othersCount').textContent = others ? others.length : 0;
+        }
+    </script>
+</body>
+</html>
